@@ -8,10 +8,19 @@
 <body>
     <script>
         function getComputerChoice() {
-            let computerOptions = ["Rock", "Paper", "Scissors"];
+            let computerOptions = ["rock", "paper", "scissors"];
             let computerChoice = computerOptions[Math.floor(Math.random() * computerOptions.length)];
             return computerChoice;
         };
+
+
+        const playerSelection = prompt("Rock, paper or scissors?", "").toLowerCase();
+        const computerSelection = getComputerChoice();
+
+        function playRound(playerSelection, computerSelection) {
+
+        }
+
     </script>
 </body>
 </html>
