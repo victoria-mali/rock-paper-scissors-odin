@@ -33,8 +33,11 @@
             else if (playerSelection == "scissors" && computerSelection == "rock") {
                 console.log("You lost! Rock beats scissors.");
             } 
+            else if ((playerSelection == "scissors" && computerSelection == "scissors") || (playerSelection == "paper" && computerSelection == "paper") || (playerSelection == "rock" && computerSelection == "rock")) {
+                console.log("It's a tie!");
+            }
             else {
-                playRound(playerSelection, computerSelection);
+                console.log("Type rock, paper or scissors!");
             }
         };
         let playerSelection = prompt("Rock, paper or scissors?", "").toLowerCase();
