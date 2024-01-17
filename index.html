@@ -37,24 +37,36 @@
                 return "It's a tie!";
             }
             else {
-                return "Type rock, paper or scissors!";
-            } 
+                alert("Please enter rock, paper or scissors!");
+            }
         };
         let playerSelection = prompt("Rock, paper or scissors?", "").toLowerCase();
         let computerSelection = getComputerChoice();
         console.log(playRound(playerSelection, computerSelection));
+        let roundResult = playRound(playerSelection, computerSelection);
 
-
-      /*  function game() {
-            if (roundResult === "You won! Rock beats scissors." || roundResult === "You won! Paper beats rock." || roundResult === "You won! Scissors beats paper.") {
-                return "Your score is: ", ++yourScore, "Computer score is: ", computerScore;
-            } else if (roundResult === "You lost! Paper beats rock." || roundResult === "You lost! Scissors beats paper." || roundResult === "You lost! Rock beats scissors.") {
-                return "Your score is: ", yourScore, "Computer score is: ", ++computerScore;
-            } else {
-                return yourScore, computerScore;
+        function calcResult() {
+            if ((roundResult == "You won! Rock beats scissors.") || (roundResult == "You won! Paper beats rock.") || (roundResult == "You won! Scissors beats paper.")) {
+                return "success"
+            } else if ((roundResult == "You lost! Paper beats rock.") || (roundResult == "You lost! Scissors beats paper.") || (roundResult == "You lost! Rock beats scissors.")) {
+                return "failure";
+            } else if (roundResult == "It's a tie!") {
+                return "tie";
             }
         };
-        let roundResult = playRound();
+        console.log(calcResult());
+
+        
+
+
+        /* function game() {
+            if (roundResult == "You won! Rock beats scissors." || roundResult == "You won! Paper beats rock." || roundResult == "You won! Scissors beats paper.") {
+                return ++yourScore;
+            } else if (roundResult == "You lost! Paper beats rock." || roundResult == "You lost! Scissors beats paper." || roundResult == "You lost! Rock beats scissors.") {
+                return yourScore;
+            }
+        };
+        let roundResult = playRound(playerSelection, computerSelection);
         let yourScore = 0;
         let computerScore = 0;
         console.log(game()); */

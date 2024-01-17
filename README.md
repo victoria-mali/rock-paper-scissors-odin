@@ -9,4 +9,4 @@ return a string with a text for each instance
 if there's a tie - replay the round
 return a string from a function round
 3. write a function that makes the previous game function play 5 times
-return a winner or loser based on who won more times
+after entering rock, paper or scissors in the prompt window, the console log shows the score user vs computer
