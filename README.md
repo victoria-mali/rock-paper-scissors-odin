@@ -10,3 +10,10 @@ if there's a tie - replay the round
 return a string from a function round
 3. write a function that makes the previous game function play 5 times
 after entering rock, paper or scissors in the prompt window, the console log shows the score user vs computer
+
+I need the game to repeat 5 times and the scores to keep adding to the right place
+
+
+1. function getComputer choice returns rock, paper or scissors and puts it in a varibale computerSelection
+2. function playRound takes 2 variables - computerSelection and playerSelection from a prompt and returns whether the player won or lost the round. the result is stored in a variable roundResult.
+3. 
