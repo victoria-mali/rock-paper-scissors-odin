@@ -17,3 +17,9 @@ I need the game to repeat 5 times and the scores to keep adding to the right pla
 1. function getComputer choice returns rock, paper or scissors and puts it in a varibale computerSelection
 2. function playRound takes 2 variables - computerSelection and playerSelection from a prompt and returns whether the player won or lost the round. the result is stored in a variable roundResult.
 3. 
+
+
+1. when a user clicks a button, a function with an attribute player selection rock/paper/scissors runs
+2. this function take the attribute and plays a round
+3. when a round is played, it adds a point to either computer or user and displays it
+4. when the user plays the round 5 times, the winner with more points is announced
