@@ -7,14 +7,16 @@
 </head>
 <body>
     <div>
-        <button class="btn">rock</button>
-        <button class="btn">paper</button>
-        <button class="btn">scissors</button>
+        <button class="rock" value="rock">rock</button>
+        <button class="paper" value="paper">paper</button>
+        <button class="scissors" value="scissors">scissors</button>
     </div>
 
-    <div class="results">
+    <div class="round-results">
 
     </div>
+
+    <div class="score"></div>
 
     <script>
         function getComputerChoice() {
@@ -47,51 +49,37 @@
             else if ((playerSelection == "scissors" && computerSelection == "scissors") || (playerSelection == "paper" && computerSelection == "paper") || (playerSelection == "rock" && computerSelection == "rock")) {
                 return "It's a tie!";
             }
-          //  else {
-          //      alert("Please enter rock, paper or scissors!");
-           // }
         };
 
-        let divResults = document.querySelector(".results");
+        let divResults = document.querySelector(".round-results");
+        let computerSelection;
+        let playerSelection;
+        let roundResult;
 
-        let buttons = document.querySelectorAll('button');
-        buttons.forEach((button) => {
-            button.addEventListener('click', buttonTrigger);
-        });
+        let buttons = document.querySelectorAll("button");
+        buttons.forEach(button => {
+        button.addEventListener("click", () => {
+        computerSelection = getComputerChoice();
+        playerSelection = button.value;
+        roundResult = playRound(playerSelection, computerSelection);
+        divResults.textContent = roundResult;
+    })
+    });
 
-        function buttonTrigger() {
-            let playerSelection;
-            let computerSelection = getComputerChoice();
+        let computerScore = 0;
+        let userScore = 0;
+        let divScore = document.querySelector(".score");
 
-            if (btn.textContent === "rock") {
-                playerSelection = "rock";
-            } else if (btn.textContent === "paper") {
-                playerSelection = "paper";
-            } else if (btn.textContent === "scissors") {
-                playerSelection = "scissors";
+        function countScore() {
+                if (roundResult.includes("won")) {
+                return userScore += 1;
+            } else if (roundResult.includes("lost")) {
+                return computerScore += 1;
+            }
             };
 
-            let roundResult = playRound(playerSelection, computerSelection);
-            divResults.textContent = roundResult;
-        };
-
-
-
-
-
-       /* let btnRock = document.querySelector(".rock");
-        btnRock.addEventListener('click', () => {            
-            let computerSelection = getComputerChoice();
-            let playerSelection = "rock";
-            let roundResult = playRound(playerSelection, computerSelection);
-            divResults.textContent = roundResult;
-        }); */
-
-
-
-
-        
-
+        divScore.textContent = userScore;
+        console.log(countScore);
         
     </script>
 </body>
