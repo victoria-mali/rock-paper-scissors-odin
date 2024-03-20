@@ -3,22 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Rock paper scissors</title>
 </head>
 <body>
     <div>
-        <button class="rock" value="rock">rock</button>
-        <button class="paper" value="paper">paper</button>
-        <button class="scissors" value="scissors">scissors</button>
+        <button class="rock game-button" value="rock">rock</button>
+        <button class="paper game-button" value="paper">paper</button>
+        <button class="scissors game-button" value="scissors">scissors</button>
     </div>
 
-    <div class="round-results">
+    <div class="round-results"></div>
+    <div class="round-score"></div>
+    <div class="final-score"></div>
 
-    </div>
-
-    <div class="score"></div>
+    <button class="restart">Restart the game</button>
 
     <script>
+
+        let divResults = document.querySelector(".round-results");
+        let buttons = document.querySelectorAll(".game-button");
+        let divRoundScore = document.querySelector(".round-score");
+        let divFinalScore = document.querySelector(".final-score");
+        let restartButton = document.querySelector(".restart");
+
+
+        let playerScore = 0;
+        let computerScore = 0;
+        let round = 0;
+        let computerSelection;
+        let playerSelection;
+
+
+        buttons.forEach(button => {
+        button.addEventListener("click", () => {
+        computerSelection = getComputerChoice();
+        playerSelection = button.value;
+        playRound();
+        })
+        });
+
+
         function getComputerChoice() {
             let computerOptions = ["rock", "paper", "scissors"];
             let computerChoice = computerOptions[Math.floor(Math.random() * computerOptions.length)];
@@ -27,60 +52,76 @@
         };
 
 
-        function playRound(playerSelection, computerSelection) {
+        function playRound() {
             if (playerSelection == "rock" && computerSelection == "scissors") {
-                return "You won! Rock beats scissors.";
+                playerScore++;
+                round++;
+                divRoundScore.textContent = `Your Score: ${playerScore} | Enemy Score: ${computerScore}`;
+                divResults.textContent = "You won! Rock beats scissors.";
             }
             else if (playerSelection == "paper" && computerSelection == "rock") {
-                return "You won! Paper beats rock.";
+                playerScore++;
+                round++;
+                divRoundScore.textContent = `Your Score: ${playerScore} | Enemy Score: ${computerScore}`;
+                divResults.textContent = "You won! Paper beats rock.";
             }
             else if (playerSelection == "scissors" && computerSelection == "paper") {
-                return "You won! Scissors beats paper.";
+                playerScore++;
+                round++;
+                divRoundScore.textContent = `Your Score: ${playerScore} | Enemy Score: ${computerScore}`;
+                divResults.textContent = "You won! Scissors beats paper.";
             }
             else if (playerSelection == "rock" && computerSelection == "paper") {
-                return "You lost! Paper beats rock.";
+                computerScore++;
+                round++;
+                divRoundScore.textContent = `Your Score: ${playerScore} | Enemy Score: ${computerScore}`;
+                divResults.textContent = "You lost! Paper beats rock.";
             }
             else if (playerSelection == "paper" && computerSelection == "scissors") {
-                return "You lost! Scissors beats paper.";
+                computerScore++;
+                round++;
+                divRoundScore.textContent = `Your Score: ${playerScore} | Enemy Score: ${computerScore}`;
+                divResults.textContent = "You lost! Scissors beats paper.";
             }
             else if (playerSelection == "scissors" && computerSelection == "rock") {
-                return "You lost! Rock beats scissors.";
+                computerScore++;
+                round++;
+                divRoundScore.textContent = `Your Score: ${playerScore} | Enemy Score: ${computerScore}`;
+                divResults.textContent = "You lost! Rock beats scissors.";
             } 
             else if ((playerSelection == "scissors" && computerSelection == "scissors") || (playerSelection == "paper" && computerSelection == "paper") || (playerSelection == "rock" && computerSelection == "rock")) {
-                return "It's a tie!";
+                divResults.textContent = "It's a tie!";
+                round++;
+                divRoundScore.textContent = `Your Score: ${playerScore} | Enemy Score: ${computerScore}`;
             }
+            checkScore();
         };
 
-        let divResults = document.querySelector(".round-results");
-        let computerSelection;
-        let playerSelection;
-        let roundResult;
-
-        let buttons = document.querySelectorAll("button");
-        
-        buttons.forEach(button => {
-        button.addEventListener("click", () => {
-        computerSelection = getComputerChoice();
-        playerSelection = button.value;
-        roundResult = playRound(playerSelection, computerSelection);
-        divResults.textContent = roundResult;
-    })
-    });
-
-        let computerScore = 0;
-        let userScore = 0;
-        let divScore = document.querySelector(".score");
-
-        function playGame() {
-                if (roundResult.includes("won")) {
-                userScore += 1;
-            } else if (roundResult.includes("lost")) {
-                computerScore += 1;
+        function checkScore() {
+            if (playerScore === 5) {
+            divFinalScore.textContent = 'You win the game!';
+            restartGame();
+            } else if (computerScore === 5) {
+            divFinalScore.textContent = 'You lose the game!';
+            restartGame();
             }
             };
 
-        divScore.textContent = userScore;
-        console.log(userScore);
+            function restartGame() {
+                buttons.forEach((element) => {
+                element.disabled = true;
+            });
+
+            restartButton.style.visibility = 'visible';
+  
+            restartButton.addEventListener('click', () => {
+             window.location.reload();
+            });
+            };
+        
+
+    
+
         
     </script>
 </body>
